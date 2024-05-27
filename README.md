@@ -21,7 +21,7 @@ We need this to view Database quickly, and create or modify any existing databas
 After installing everything, and assuming we have MS SQL Server running. 
 
 ### Creating an empty database `Asd1234`
-1. Open SQL Management Studio and connect to the sql server running on your machine (if you installed it successfully, then it's already running and you will be able to select it)
+1. Open SQL Management Studio and connect to the sql server running on your machine (if you installed it successfully, then it's already running and you will be able to select it) (images 02-05).
 
 2. Right click Databases, and create a database by the name `Asd1234` (because the project is configured to use this in `appsettings.json`)
 
@@ -30,11 +30,11 @@ This step will help us create database tables automatically. The project already
 
 1. open command line (`window+run -> type cmd -> enter`)
 2. navigate to `DatabaseTask\DatabaseTask` folder which is the root folder of our dot net web-app
-3. type `dotnet clean` (this will help you check if all project requirements are properly installed on your machine, if everything work perfect, you will see some Green text)
-4. run the database update command to create the tables with command line `dotnet ef database update`
+3. type `dotnet clean` (this will help you check if all project requirements are properly installed on your machine, if everything work perfect, you will see some Green text) (image 06).
+4. run the database update command to create the tables with command line `dotnet ef database update` (images 07-08).
 
 5. check in sql management studio if the tables are visible
-Go to MS Sql Server Management Studio, and right click on your database `Asd1234` and click refresh (this will load any new changes on your table).
+Go to MS Sql Server Management Studio, and right click on your database `Asd1234` and click refresh (this will load any new changes on your table).(image 09-11).
 
 ### B Running Database first migration (scaffolding)
 This step will help us create code (models) based on an existing database. For this we will remove the Employee.cs file, and all migration related classes that refer this (`DatabaseTaskDbContext.cs, DatabaseTaskDbContextModelSnapshot.cs`). So that we can see what files will the entity framework create based on our existing database. For this step, we will the same database `Asd1234` with a table `Employee` created in code first migration previously. 
@@ -43,11 +43,11 @@ This step will help us create code (models) based on an existing database. For t
 2. Also comment out any line that references `DatabaseTaskDbContext` in `Program.cs`
 3. Open terminal and navigate to  `DatabaseTask\DatabaseTask.Data` directory because that's where we want to keep all our database related configurations and models
 
-4. run the scaffolding command
+4. run the scaffolding command (image 12-13).
 
 ```bash
     > dotnet ef dbcontext scaffold "Server=.\;Database=Asd1234;Trusted_Connection=True;" Microsoft.EntityFrameworkCore.SqlServer -o Model -c "DatabaseTaskDbContext"
 ```
 
-This command will generate all the models (code for all the existing tables) in a directory called `Model` (becuase we added the `-o` flag). It will also create a file by the name `DatabaseTaskDbContext` to keep all the information about connecting to database and some helper properties to fetch all data from existing tables in the code.
+This command will generate all the models (code for all the existing tables, images 14-15) in a directory called `Model` (becuase we added the `-o` flag). It will also create a file by the name `DatabaseTaskDbContext` to keep all the information about connecting to database and some helper properties to fetch all data from existing tables in the code.
  
